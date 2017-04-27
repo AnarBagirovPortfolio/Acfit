@@ -14,21 +14,7 @@ final class CoreDataStack {
     
     static let shared = CoreDataStack()
     
-    enum ObjectKind {
-        case calendar
-        case completeExersice
-        case customer
-        case exercise
-        case muscle
-        case tool
-        case weightLog
-    }
-    
-    var context: NSManagedObjectContext {
-        return persistentContainer.viewContext
-    }
-    
-    lazy var persistentContainer: NSPersistentContainer = {
+    fileprivate lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "ProjectFitry")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -52,6 +38,10 @@ extension CoreDataStack {
         }
     }
     
+    func create<T: NSManagedObject>(_ type: T.Type) -> T {
+        return T(context: persistentContainer.viewContext)
+    }
+    
     func fetchedObjects<T>(controller: NSFetchedResultsController<T>) -> [T] {
         do {
             try controller.performFetch()
@@ -65,29 +55,16 @@ extension CoreDataStack {
         return []
     }
     
-    func fetchedResultController<T: NSManagedObject>(_ type: T.Type, sort: [NSSortDescriptor]) -> NSFetchedResultsController<T> {
+    func fetchedResultController<T: NSManagedObject>(_ type: T.Type,
+                                 sort: [NSSortDescriptor],
+                                 sectionNameKeyPath: String? = nil,
+                                 cacheName: String? = nil) -> NSFetchedResultsController<T> {
         let fetchRequest = T.fetchRequest() as! NSFetchRequest<T>
         fetchRequest.sortDescriptors = sort
         
-        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-    }
-    
-    func create(_ kind: CoreDataStack.ObjectKind) -> NSManagedObject {
-        switch kind {
-        case .calendar:
-            return Calendar(context: context)
-        case .completeExersice:
-            return CompleteExercise(context: context)
-        case .customer:
-            return Customer(context: context)
-        case .exercise:
-            return Exercise(context: context)
-        case .muscle:
-            return Muscle(context: context)
-        case .tool:
-            return Tool(context: context)
-        case .weightLog:
-            return WeightLog(context: context)
-        }
+        return NSFetchedResultsController(fetchRequest: fetchRequest,
+                                          managedObjectContext: persistentContainer.viewContext,
+                                          sectionNameKeyPath: sectionNameKeyPath,
+                                          cacheName: cacheName)
     }
 }

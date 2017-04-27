@@ -15,7 +15,6 @@ class ViewController: UIViewController {
         let sortDescriptor = NSSortDescriptor(key: "id", ascending: true)
         let controller = CoreDataStack.shared.fetchedResultController(Customer.self, sort: [sortDescriptor])
         
-        
         return controller
     }()
     
@@ -26,7 +25,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let a = CoreDataStack.shared.create(.customer) as! Customer
+        let a = CoreDataStack.shared.create(Customer.self)
         print(a.name ?? "Anar")
         // Do any additional setup after loading the view, typically from a nib.
     }
