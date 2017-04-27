@@ -14,6 +14,7 @@
 		D1C55F971EB111A2004E877E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1C55F961EB111A2004E877E /* Assets.xcassets */; };
 		D1C55F9A1EB111A2004E877E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1C55F981EB111A2004E877E /* LaunchScreen.storyboard */; };
 		D1C55FA51EB111A3004E877E /* ProjectFitryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C55FA41EB111A3004E877E /* ProjectFitryTests.swift */; };
+		D1C55FB21EB11D2D004E877E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C55FB11EB11D2D004E877E /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		D1C55FA01EB111A3004E877E /* ProjectFitryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectFitryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1C55FA41EB111A3004E877E /* ProjectFitryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectFitryTests.swift; sourceTree = "<group>"; };
 		D1C55FA61EB111A3004E877E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1C55FB11EB11D2D004E877E /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = ProjectFitry/DataModel/CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,8 @@
 		D1C55F801EB111A2004E877E = {
 			isa = PBXGroup;
 			children = (
+				D1C55FB01EB111D5004E877E /* Views */,
+				D1C55FAF1EB111B3004E877E /* DataModel */,
 				D1C55F8B1EB111A2004E877E /* ProjectFitry */,
 				D1C55FA31EB111A3004E877E /* ProjectFitryTests */,
 				D1C55F8A1EB111A2004E877E /* Products */,
@@ -81,11 +85,8 @@
 			children = (
 				D1C55F8C1EB111A2004E877E /* AppDelegate.swift */,
 				D1C55F8E1EB111A2004E877E /* ViewController.swift */,
-				D1C55F901EB111A2004E877E /* Main.storyboard */,
 				D1C55F961EB111A2004E877E /* Assets.xcassets */,
-				D1C55F981EB111A2004E877E /* LaunchScreen.storyboard */,
 				D1C55F9B1EB111A2004E877E /* Info.plist */,
-				D1C55F931EB111A2004E877E /* ProjectFitry.xcdatamodeld */,
 			);
 			path = ProjectFitry;
 			sourceTree = "<group>";
@@ -97,6 +98,24 @@
 				D1C55FA61EB111A3004E877E /* Info.plist */,
 			);
 			path = ProjectFitryTests;
+			sourceTree = "<group>";
+		};
+		D1C55FAF1EB111B3004E877E /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				D1C55F931EB111A2004E877E /* ProjectFitry.xcdatamodeld */,
+				D1C55FB11EB11D2D004E877E /* CoreDataStack.swift */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
+		D1C55FB01EB111D5004E877E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D1C55F981EB111A2004E877E /* LaunchScreen.storyboard */,
+				D1C55F901EB111A2004E877E /* Main.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +226,7 @@
 				D1C55F8F1EB111A2004E877E /* ViewController.swift in Sources */,
 				D1C55F951EB111A2004E877E /* ProjectFitry.xcdatamodeld in Sources */,
 				D1C55F8D1EB111A2004E877E /* AppDelegate.swift in Sources */,
+				D1C55FB21EB11D2D004E877E /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +255,7 @@
 				D1C55F911EB111A2004E877E /* Base */,
 			);
 			name = Main.storyboard;
+			path = ProjectFitry;
 			sourceTree = "<group>";
 		};
 		D1C55F981EB111A2004E877E /* LaunchScreen.storyboard */ = {
@@ -243,6 +264,7 @@
 				D1C55F991EB111A2004E877E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = ProjectFitry;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -434,7 +456,8 @@
 				D1C55F941EB111A2004E877E /* ProjectFitry.xcdatamodel */,
 			);
 			currentVersion = D1C55F941EB111A2004E877E /* ProjectFitry.xcdatamodel */;
-			path = ProjectFitry.xcdatamodeld;
+			name = ProjectFitry.xcdatamodeld;
+			path = ProjectFitry/ProjectFitry.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

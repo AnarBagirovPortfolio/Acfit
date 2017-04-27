@@ -1,4 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Calendar" representedClassName="Calendar" syncable="YES" codeGenerationType="class">
+        <attribute name="customDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="friday" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="monday" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="remind" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="saturday" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="sunday" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="thursday" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tuesday" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="wednesday" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="customer" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="calendars" inverseEntity="Customer" syncable="YES"/>
+        <relationship name="exercise" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="calendar" inverseEntity="Exercise" syncable="YES"/>
+    </entity>
+    <entity name="CompleteExercise" representedClassName="CompleteExercise" syncable="YES" codeGenerationType="class">
+        <attribute name="count" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="duration" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="weightInKg" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="customer" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="completeExercises" inverseEntity="Customer" syncable="YES"/>
+        <relationship name="exercise" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="completeExercises" inverseEntity="Exercise" syncable="YES"/>
+    </entity>
+    <entity name="Customer" representedClassName="Customer" syncable="YES" codeGenerationType="class">
+        <attribute name="birthDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="heightInMetr" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="sex" attributeType="String" syncable="YES"/>
+        <attribute name="weightInKg" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="calendars" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Calendar" inverseName="customer" inverseEntity="Calendar" syncable="YES"/>
+        <relationship name="completeExercises" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CompleteExercise" inverseName="customer" inverseEntity="CompleteExercise" syncable="YES"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Exercise" inverseName="customer" inverseEntity="Exercise" syncable="YES"/>
+        <relationship name="tools" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Tool" inverseName="customer" inverseEntity="Tool" syncable="YES"/>
+        <relationship name="weightLogs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WeightLog" inverseName="customer" inverseEntity="WeightLog" syncable="YES"/>
+    </entity>
+    <entity name="Exercise" representedClassName="Exercise" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="calendar" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Calendar" inverseName="exercise" inverseEntity="Calendar" syncable="YES"/>
+        <relationship name="completeExercises" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CompleteExercise" inverseName="exercise" inverseEntity="CompleteExercise" syncable="YES"/>
+        <relationship name="customer" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="exercises" inverseEntity="Customer" syncable="YES"/>
+        <relationship name="muscles" toMany="YES" deletionRule="Nullify" destinationEntity="Muscle" inverseName="exercises" inverseEntity="Muscle" syncable="YES"/>
+        <relationship name="tool" maxCount="1" deletionRule="Nullify" destinationEntity="Tool" inverseName="exercises" inverseEntity="Tool" syncable="YES"/>
+    </entity>
+    <entity name="Muscle" representedClassName="Muscle" syncable="YES" codeGenerationType="class">
+        <attribute name="desc" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="image" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="muscles" inverseEntity="Exercise" syncable="YES"/>
+    </entity>
+    <entity name="Tool" representedClassName="Tool" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="image" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="customer" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="tools" inverseEntity="Customer" syncable="YES"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Exercise" inverseName="tool" inverseEntity="Exercise" syncable="YES"/>
+    </entity>
+    <entity name="WeightLog" representedClassName="WeightLog" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" defaultDateTimeInterval="514922460" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="fatPercentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="massIndex" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="weightInKg" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="customer" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="weightLogs" inverseEntity="Customer" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Calendar" positionX="322" positionY="-72" width="128" height="225"/>
+        <element name="CompleteExercise" positionX="-135" positionY="18" width="128" height="148"/>
+        <element name="Customer" positionX="81" positionY="89" width="128" height="223"/>
+        <element name="Exercise" positionX="88" positionY="-144" width="128" height="133"/>
+        <element name="Muscle" positionX="-146" positionY="-126" width="128" height="118"/>
+        <element name="Tool" positionX="-117" positionY="387" width="128" height="118"/>
+        <element name="WeightLog" positionX="349" positionY="288" width="128" height="133"/>
+    </elements>
 </model>
