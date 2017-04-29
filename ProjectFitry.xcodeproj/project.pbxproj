@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D13B033F1EB24F7800FB44BD /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13B033E1EB24F7800FB44BD /* TableViewController.swift */; };
 		D1C55F8D1EB111A2004E877E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C55F8C1EB111A2004E877E /* AppDelegate.swift */; };
 		D1C55F8F1EB111A2004E877E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C55F8E1EB111A2004E877E /* ViewController.swift */; };
 		D1C55F921EB111A2004E877E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1C55F901EB111A2004E877E /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D13B033E1EB24F7800FB44BD /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = TestControllers/TableViewController.swift; sourceTree = "<group>"; };
 		D1C55F891EB111A2004E877E /* ProjectFitry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectFitry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1C55F8C1EB111A2004E877E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1C55F8E1EB111A2004E877E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,9 +62,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D13B033D1EB24F5800FB44BD /* TestControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D13B033E1EB24F7800FB44BD /* TableViewController.swift */,
+			);
+			name = TestControllers;
+			sourceTree = "<group>";
+		};
 		D1C55F801EB111A2004E877E = {
 			isa = PBXGroup;
 			children = (
+				D13B033D1EB24F5800FB44BD /* TestControllers */,
 				D1C55FB01EB111D5004E877E /* Views */,
 				D1C55FAF1EB111B3004E877E /* DataModel */,
 				D1C55F8B1EB111A2004E877E /* ProjectFitry */,
@@ -226,6 +237,7 @@
 				D1C55F8F1EB111A2004E877E /* ViewController.swift in Sources */,
 				D1C55F951EB111A2004E877E /* ProjectFitry.xcdatamodeld in Sources */,
 				D1C55F8D1EB111A2004E877E /* AppDelegate.swift in Sources */,
+				D13B033F1EB24F7800FB44BD /* TableViewController.swift in Sources */,
 				D1C55FB21EB11D2D004E877E /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,6 +450,7 @@
 				D1C55FAB1EB111A3004E877E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D1C55FAC1EB111A3004E877E /* Build configuration list for PBXNativeTarget "ProjectFitryTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +459,7 @@
 				D1C55FAE1EB111A3004E877E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
