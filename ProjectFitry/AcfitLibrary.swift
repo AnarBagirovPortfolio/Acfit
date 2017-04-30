@@ -19,6 +19,10 @@ class AcfitLibrary {
         case black
     }
     
+    func animateBottomUp(animations: @escaping () -> Void) {
+        UIView.animate(withDuration: 2, delay: 0.5, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.2, options: [.preferredFramesPerSecond60], animations: animations, completion: nil)
+    }
+    
     func set(statusBarColor color: StatusBarColor) {
         if color == StatusBarColor.black {
             UIApplication.shared.statusBarStyle = .default

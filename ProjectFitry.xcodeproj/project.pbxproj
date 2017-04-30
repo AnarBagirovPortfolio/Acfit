@@ -86,10 +86,10 @@
 		D1C55F8B1EB111A2004E877E /* ProjectFitry */ = {
 			isa = PBXGroup;
 			children = (
+				D1EE940F1EB6478800FD6F05 /* AcfitLibrary.swift */,
 				D1C55F8C1EB111A2004E877E /* AppDelegate.swift */,
 				D1C55F961EB111A2004E877E /* Assets.xcassets */,
 				D1C55F9B1EB111A2004E877E /* Info.plist */,
-				D1EE940F1EB6478800FD6F05 /* AcfitLibrary.swift */,
 			);
 			path = ProjectFitry;
 			sourceTree = "<group>";
