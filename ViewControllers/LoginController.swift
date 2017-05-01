@@ -13,26 +13,17 @@ class LoginController: UIViewController {
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var loginView: UIView!
-    @IBOutlet weak var fullNameTextField: UITextField!
-    @IBOutlet weak var birthDateTextField: UITextField!
-    @IBOutlet weak var sexTextField: UITextField!
-    @IBOutlet weak var weightTextField: UITextField!
-    @IBOutlet weak var heightTextField: UITextField!
     
     @IBAction func textEditingDidBegin(_ sender: UITextField) {
-        if sender == sexTextField {
-            configure("sexTextField")
-        } else if sender == weightTextField {
-            configure("weightTextField")
-        } else if sender == heightTextField {
-            configure("heightTextField")
-        } else {
-            configure("otherTextField")
-        }
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let loginView = Bundle.main.loadNibNamed("LoginView", owner: self, options: nil)?.first as? LoginView {
+            self.loginView.addSubview(loginView)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,9 +51,9 @@ extension LoginController {
             view.addGestureRecognizer(tap)
             
             //Configure text fields
-            [fullNameTextField, birthDateTextField, sexTextField, weightTextField, heightTextField].forEach { textField in
+            /*[fullNameTextField, birthDateTextField, sexTextField, weightTextField, heightTextField].forEach { textField in
                 textField?.useUnderline()
-            }
+            }*/
             
             //Initial value for top constraint before starting animating
             topConstraint.constant = view.bounds.height
