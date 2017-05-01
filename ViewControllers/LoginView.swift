@@ -25,10 +25,9 @@ class LoginView: UIView {
             let margin = CGFloat(16)
             let width = (view.bounds.width - 3 * margin) / 2
             
-            birthDateFieldWidth.constant = width
-            birthDateLabelWidth.constant = width
-            weightLabelWidth.constant = width
-            weightFieldWidth.constant = width
+            [ birthDateFieldWidth, birthDateLabelWidth, weightLabelWidth, weightFieldWidth ].forEach { constraint in
+                constraint?.constant = width
+            }
             
             [ fullNameTextField, birthDateTextField, sexTextField, weightTextField, heightTextField ].forEach { field in
                 field?.useUnderline()
@@ -38,12 +37,4 @@ class LoginView: UIView {
         }
     }
     
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

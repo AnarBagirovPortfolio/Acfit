@@ -12,25 +12,39 @@ import UIKit
 final class AcfitLibrary {
     private init() { }
     
+    static let shared = AcfitLibrary()
+    
     enum StatusBarColor {
         case white
         case black
     }
     
-    class func animateBottomUp(animations: @escaping () -> Void) {
-        UIView.animate(withDuration: 2, delay: 0.5, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.2, options: [.preferredFramesPerSecond60], animations: animations, completion: nil)
+    func animateBottomUp(animations: @escaping () -> Void) {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 2,
+                           delay: 0.5,
+                           usingSpringWithDamping: 0.8,
+                           initialSpringVelocity: 0.2,
+                           options: .preferredFramesPerSecond60,
+                           animations: animations,
+                           completion: nil)
+        }
     }
     
-    class func animateLoginView(animations: @escaping () -> Void) {
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.preferredFramesPerSecond60], animations: animations, completion: nil)
+    func animateLoginView(animations: @escaping () -> Void) {
+        UIView.animate(withDuration: 1, delay: 0, options: .preferredFramesPerSecond60, animations: animations, completion: nil)
     }
     
-    class func set(statusBarColor color: StatusBarColor) {
+    func set(statusBarColor color: StatusBarColor) {
         if color == StatusBarColor.black {
             UIApplication.shared.statusBarStyle = .default
         } else {
             UIApplication.shared.statusBarStyle = .lightContent
         }
+    }
+    
+    func set(statusBarBackgroundColor color: UIColor) {
+        UIApplication.shared.statusBarView?.backgroundColor = color
     }
 }
 

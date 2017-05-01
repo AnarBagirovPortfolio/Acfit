@@ -14,9 +14,13 @@ class LoginController: UIViewController {
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var loginView: UIView!
     
-    @IBAction func textEditingDidBegin(_ sender: UITextField) {
-        
-    }
+    lazy var standardTopConstraint: CGFloat = {
+        return (self.view.bounds.height - self.heightConstraint.constant) / 2
+    }()
+    
+    lazy var openKeyboardTopConstraint: CGFloat = {
+        return 30
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +28,15 @@ class LoginController: UIViewController {
         if let loginView = Bundle.main.loadNibNamed("LoginView", owner: self, options: nil)?.first as? LoginView {
             self.loginView.addSubview(loginView)
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        AcfitLibrary.shared.set(statusBarColor: .white)
+        AcfitLibrary.shared.set(statusBarBackgroundColor: .mainColor)
+        
+        view.addGestureRecognizer({
+            return UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        }())
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,77 +44,41 @@ class LoginController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        configure("before")
+        topConstraint.constant = view.bounds.height
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        configure("after")
+        topConstraint.constant = self.standardTopConstraint
+        
+        AcfitLibrary.shared.animateBottomUp {
+            self.view.layoutIfNeeded()
+        }
     }
     
 }
 
 extension LoginController {
-    func configure(_ configuration: String) {
-        if configuration == "before" {
-            let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-            
-            AcfitLibrary.set(statusBarColor: .white)
-            UIApplication.shared.statusBarView?.backgroundColor = .mainColor
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
-            view.addGestureRecognizer(tap)
-            
-            //Configure text fields
-            /*[fullNameTextField, birthDateTextField, sexTextField, weightTextField, heightTextField].forEach { textField in
-                textField?.useUnderline()
-            }*/
-            
-            //Initial value for top constraint before starting animating
-            topConstraint.constant = view.bounds.height
-            
-            //Configure loginView
-            loginView.layer.cornerRadius = 10
-            loginView.layer.shadowOffset = CGSize(width: 0, height: 0)
-            loginView.layer.shadowColor = UIColor.black.cgColor
-            loginView.layer.shadowOpacity = 0.5
-        } else if configuration == "after" {
-            //Starting animating
-            self.topConstraint.constant = (self.view.bounds.height - self.heightConstraint.constant) / 2
-            
-            AcfitLibrary.animateBottomUp {
-                self.view.layoutIfNeeded()
-            }
-        } else if configuration == "sexTextField" {
-            self.topConstraint.constant = (self.view.bounds.height - self.heightConstraint.constant) / 4
-            
-            AcfitLibrary.animateLoginView {
-                self.view.layoutIfNeeded()
-            }
-        } else if configuration == "weightTextField" {
-            self.topConstraint.constant = -10
-            
-            AcfitLibrary.animateLoginView {
-                self.view.layoutIfNeeded()
-            }
-        } else if configuration == "heightTextField" {
-            self.topConstraint.constant = -30
-            
-            AcfitLibrary.animateLoginView {
-                self.view.layoutIfNeeded()
-            }
-        } else if configuration == "otherTextField" {
-            self.topConstraint.constant = (self.view.bounds.height - self.heightConstraint.constant) / 2
-            
-            AcfitLibrary.animateLoginView {
-                self.view.layoutIfNeeded()
-            }
-        }
-    }
-    
     func dismissKeyboard() {
         view.endEditing(true)
     }
     
     func keyboardWillHide() {
-        configure("otherTextField")
+        topConstraint.constant = self.standardTopConstraint
+        
+        AcfitLibrary.shared.animateLoginView {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            topConstraint.constant = standardTopConstraint - keyboardSize.height / 2
+        } else {
+            topConstraint.constant = openKeyboardTopConstraint
+        }
+        
+        AcfitLibrary.shared.animateLoginView {
+            self.view.layoutIfNeeded()
+        }
     }
 }
