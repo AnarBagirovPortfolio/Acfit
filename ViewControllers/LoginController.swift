@@ -31,12 +31,16 @@ class LoginController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
-        AcfitLibrary.shared.set(statusBarColor: .white)
+        AcfitLibrary.shared.set(statusBarTintColor: .white)
         AcfitLibrary.shared.set(statusBarBackgroundColor: .mainColor)
         
         view.addGestureRecognizer({
             return UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         }())
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,37 +52,35 @@ class LoginController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        topConstraint.constant = self.standardTopConstraint
-        
-        AcfitLibrary.shared.animateBottomUp {
-            self.view.layoutIfNeeded()
-        }
+        edit(topConstraintConstant: self.standardTopConstraint, type: .bottomUp)
     }
     
 }
 
 extension LoginController {
+    func edit(topConstraintConstant: CGFloat, type: AcfitLibrary.AnimationType) {
+        topConstraint.constant = topConstraintConstant
+        
+        AcfitLibrary.shared.animate(type: type) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
     func dismissKeyboard() {
         view.endEditing(true)
     }
     
     func keyboardWillHide() {
-        topConstraint.constant = self.standardTopConstraint
-        
-        AcfitLibrary.shared.animateLoginView {
-            self.view.layoutIfNeeded()
-        }
+        edit(topConstraintConstant: standardTopConstraint, type: .standard)
     }
     
     func keyboardWillShow(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            topConstraint.constant = standardTopConstraint - keyboardSize.height / 2
+            let constraint = standardTopConstraint - keyboardSize.height / 2
+            
+            edit(topConstraintConstant: constraint, type: .standard)
         } else {
-            topConstraint.constant = openKeyboardTopConstraint
-        }
-        
-        AcfitLibrary.shared.animateLoginView {
-            self.view.layoutIfNeeded()
+            edit(topConstraintConstant: openKeyboardTopConstraint, type: .standard)
         }
     }
 }

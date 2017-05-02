@@ -23,10 +23,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="atD-Fx-rXF" customClass="LoginView" customModule="ProjectFitry" customModuleProvider="target">
-                                <rect key="frame" x="20" y="133.5" width="335" height="320"/>
+                                <rect key="frame" x="20" y="133.5" width="335" height="370"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="320" id="vwF-n7-PVP"/>
+                                    <constraint firstAttribute="height" constant="370" id="vwF-n7-PVP"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

@@ -17,6 +17,7 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u8f-Q2-tF0">
                     <rect key="frame" x="147.5" y="20" width="80" height="80"/>
+                    <color key="backgroundColor" red="0.094117647060000004" green="0.56862745100000001" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="35e-UF-a80"/>
                         <constraint firstAttribute="height" constant="80" id="mb2-ym-awu"/>
@@ -105,6 +106,21 @@
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h92-XH-KJu">
+                    <rect key="frame" x="16" y="308" width="343" height="45"/>
+                    <color key="backgroundColor" red="0.1215686275" green="0.37254901959999998" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="2ir-FX-B7I"/>
+                    </constraints>
+                    <state key="normal" title="Login">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -131,11 +147,14 @@
                 <constraint firstItem="ZjZ-8C-IIT" firstAttribute="top" secondItem="hic-T2-BsZ" secondAttribute="bottom" constant="16" id="W2O-e1-Cmz"/>
                 <constraint firstAttribute="trailing" secondItem="ZjZ-8C-IIT" secondAttribute="trailing" constant="16" id="Xac-4I-X4m"/>
                 <constraint firstItem="ZjZ-8C-IIT" firstAttribute="leading" secondItem="iEa-jX-KJA" secondAttribute="trailing" constant="16" id="bPl-fj-Cdo"/>
+                <constraint firstItem="h92-XH-KJu" firstAttribute="top" secondItem="Kr9-ib-7bu" secondAttribute="bottom" constant="16" id="dQb-mO-k4t"/>
                 <constraint firstItem="u8f-Q2-tF0" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="epy-jJ-Bp0"/>
                 <constraint firstAttribute="trailing" secondItem="9bX-sO-Qyv" secondAttribute="trailing" constant="16" id="id4-EX-6Jw"/>
                 <constraint firstAttribute="trailing" secondItem="hic-T2-BsZ" secondAttribute="trailing" constant="16" id="jYe-i3-ZHo"/>
                 <constraint firstItem="UXF-qG-tea" firstAttribute="top" secondItem="u8f-Q2-tF0" secondAttribute="bottom" constant="16" id="n1O-De-mSN"/>
                 <constraint firstItem="UXF-qG-tea" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="pJ0-bU-Rbt"/>
+                <constraint firstItem="h92-XH-KJu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="xcW-lY-qsk"/>
+                <constraint firstAttribute="trailing" secondItem="h92-XH-KJu" secondAttribute="trailing" constant="16" id="zSo-qn-hll"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>

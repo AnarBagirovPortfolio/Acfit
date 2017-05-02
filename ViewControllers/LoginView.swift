@@ -21,20 +21,22 @@ class LoginView: UIView {
     @IBOutlet weak var weightFieldWidth: NSLayoutConstraint!
     
     override func willMove(toSuperview newSuperview: UIView?) {
-        if let view = newSuperview as? LoginView {
-            let margin = CGFloat(16)
-            let width = (view.bounds.width - 3 * margin) / 2
-            
-            [ birthDateFieldWidth, birthDateLabelWidth, weightLabelWidth, weightFieldWidth ].forEach { constraint in
-                constraint?.constant = width
-            }
-            
-            [ fullNameTextField, birthDateTextField, sexTextField, weightTextField, heightTextField ].forEach { field in
-                field?.useUnderline()
-            }
-            
-            self.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 320)
+        guard let view = newSuperview as? LoginView else {
+            return
         }
+        
+        let margin = CGFloat(16)
+        let width = (view.bounds.width - 3 * margin) / 2
+        
+        [ birthDateFieldWidth, birthDateLabelWidth, weightLabelWidth, weightFieldWidth ].forEach { constraint in
+            constraint?.constant = width
+        }
+        
+        [ fullNameTextField, birthDateTextField, sexTextField, weightTextField, heightTextField ].forEach { field in
+            field?.useUnderline()
+        }
+        
+        self.frame = view.bounds
     }
     
 }
