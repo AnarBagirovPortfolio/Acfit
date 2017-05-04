@@ -29,14 +29,18 @@ class LoginController: UIViewController {
             self.loginView.addSubview(loginView)
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        DispatchQueue.main.async {
+            NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+            
+            self.view.addGestureRecognizer({
+                return UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+            }())
+        }
+        
+        
         AcfitLibrary.shared.set(statusBarTintColor: .white)
         AcfitLibrary.shared.set(statusBarBackgroundColor: .mainColor)
-        
-        view.addGestureRecognizer({
-            return UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        }())
     }
     
     deinit {

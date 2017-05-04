@@ -21,7 +21,7 @@ extension UIColor {
     }
     
     class var mainColor: UIColor {
-        return UIColor(red: 49 / 255.0, green: 78 / 255.0, blue: 130 / 255.0, alpha: 0.8)
+        return UIColor(red: 14 / 255.0, green: 61 / 255.0, blue: 76 / 255.0, alpha: 0.8)
     }
 }
 
@@ -34,5 +34,12 @@ extension UITextField {
         border.borderWidth = borderWidth
         self.layer.addSublayer(border)
         self.layer.masksToBounds = true
+    }
+}
+
+extension UIButton {
+    func set(enable: Bool) {
+        self.isEnabled = enable
+        self.alpha = enable ? 1 : 0.5
     }
 }
