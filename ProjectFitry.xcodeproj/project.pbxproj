@@ -17,6 +17,8 @@
 		D1C55F9A1EB111A2004E877E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1C55F981EB111A2004E877E /* LaunchScreen.storyboard */; };
 		D1C55FA51EB111A3004E877E /* ProjectFitryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C55FA41EB111A3004E877E /* ProjectFitryTests.swift */; };
 		D1C55FB21EB11D2D004E877E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C55FB11EB11D2D004E877E /* CoreDataStack.swift */; };
+		D1CD30381EBB8A5000066E75 /* UISexTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CD30371EBB8A5000066E75 /* UISexTextField.swift */; };
+		D1CD303A1EBB908500066E75 /* UIDateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CD30391EBB908500066E75 /* UIDateTextField.swift */; };
 		D1EE940E1EB646E600FD6F05 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EE940D1EB646E600FD6F05 /* LoginController.swift */; };
 		D1EE94101EB6478800FD6F05 /* AcfitLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EE940F1EB6478800FD6F05 /* AcfitLibrary.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +48,8 @@
 		D1C55FA41EB111A3004E877E /* ProjectFitryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectFitryTests.swift; sourceTree = "<group>"; };
 		D1C55FA61EB111A3004E877E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1C55FB11EB11D2D004E877E /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = ProjectFitry/DataModel/CoreDataStack.swift; sourceTree = "<group>"; };
+		D1CD30371EBB8A5000066E75 /* UISexTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISexTextField.swift; path = CustomViews/UISexTextField.swift; sourceTree = "<group>"; };
+		D1CD30391EBB908500066E75 /* UIDateTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDateTextField.swift; path = CustomViews/UIDateTextField.swift; sourceTree = "<group>"; };
 		D1EE940D1EB646E600FD6F05 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginController.swift; path = ViewControllers/LoginController.swift; sourceTree = "<group>"; };
 		D1EE940F1EB6478800FD6F05 /* AcfitLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcfitLibrary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +75,7 @@
 		D1C55F801EB111A2004E877E = {
 			isa = PBXGroup;
 			children = (
+				D1CD30361EBB8A1300066E75 /* CustomViews */,
 				D1EE940C1EB646C600FD6F05 /* ViewControllers */,
 				D1C55FB01EB111D5004E877E /* Views */,
 				D1C55FAF1EB111B3004E877E /* DataModel */,
@@ -127,6 +132,15 @@
 				D12F72EC1EB7A41700FAD2CD /* LoginView.xib */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		D1CD30361EBB8A1300066E75 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				D1CD30371EBB8A5000066E75 /* UISexTextField.swift */,
+				D1CD30391EBB908500066E75 /* UIDateTextField.swift */,
+			);
+			name = CustomViews;
 			sourceTree = "<group>";
 		};
 		D1EE940C1EB646C600FD6F05 /* ViewControllers */ = {
@@ -245,11 +259,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D12F72EF1EB7A6BB00FAD2CD /* LoginView.swift in Sources */,
+				D1CD303A1EBB908500066E75 /* UIDateTextField.swift in Sources */,
 				D1C55F951EB111A2004E877E /* ProjectFitry.xcdatamodeld in Sources */,
 				D1EE940E1EB646E600FD6F05 /* LoginController.swift in Sources */,
 				D1C55F8D1EB111A2004E877E /* AppDelegate.swift in Sources */,
 				D1EE94101EB6478800FD6F05 /* AcfitLibrary.swift in Sources */,
 				D1C55FB21EB11D2D004E877E /* CoreDataStack.swift in Sources */,
+				D1CD30381EBB8A5000066E75 /* UISexTextField.swift in Sources */,
 				D10F42371EB8F498002A7C1A /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
