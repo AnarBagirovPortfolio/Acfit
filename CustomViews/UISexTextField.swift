@@ -17,8 +17,6 @@ class UISexTextField: UITextField {
         
         view.dataSource = self
         view.delegate = self
-        view.backgroundColor = UIColor.clear
-        view.selectedRow(inComponent: 0)
         
         return view
     }()
@@ -48,5 +46,9 @@ extension UISexTextField: UIPickerViewDelegate, UIPickerViewDataSource {
     
     internal func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         text = sex[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        return NSAttributedString(string: sex[row], attributes: [NSForegroundColorAttributeName : UIColor.white])
     }
 }

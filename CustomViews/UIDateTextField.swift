@@ -15,6 +15,7 @@ class UIDateTextField: UITextField {
         
         picker.datePickerMode = .date
         picker.date = Date()
+        picker.backgroundColor = UIColor.mainColor
         picker.addTarget(self, action: #selector(datePickerValueChanged), for: UIControlEvents.valueChanged)
         
         return picker
