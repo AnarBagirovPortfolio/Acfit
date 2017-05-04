@@ -38,7 +38,6 @@ class LoginController: UIViewController {
             }())
         }
         
-        
         AcfitLibrary.shared.set(statusBarTintColor: .white)
         AcfitLibrary.shared.set(statusBarBackgroundColor: .mainColor)
     }

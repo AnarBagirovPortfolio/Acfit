@@ -34,20 +34,33 @@ class LoginView: UIView {
         return view
     }()
     
-    @IBAction func sexEditingDidBegin(_ sender: UITextField) {
-        if sender.inputView != sexPickerView {
-            sender.inputView = sexPickerView
-            sender.text = sex[0]
-            print("Hii")
-        }
-    }
+    lazy var datePickerDateFormatter: DateFormatter! = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.none
+        
+        return dateFormatter
+    }()
     
-    @IBAction func textFieldEditingChaged(_ sender: UITextField) {
-        DispatchQueue.main.async {
-            if sender.text?.isEmpty ?? true {
-                self.loginButton.set(enable: false)
-            } else {
-                self.loginButton.set(enable: [ self.fullNameTextField, self.birthDateTextField, self.sexTextField, self.weightTextField, self.heightTextField ].map({ $0?.text?.isEmpty ?? true }).filter({ $0 }).count == 0)
+    lazy var datePicker: UIDatePicker! = {
+        let picker = UIDatePicker()
+        
+        picker.datePickerMode = .date
+        picker.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControlEvents.valueChanged)
+        
+        return picker
+    }()
+    
+    @IBAction func editingDidBegin(_ sender: UITextField) {
+        if sender == sexTextField {
+            if sender.inputView != sexPickerView {
+                sender.inputView = sexPickerView
+                sender.text = sex[0]
+            }
+        } else if sender == birthDateTextField {
+            if sender.inputView != datePicker {
+                datePicker.date = Date()
+                sender.inputView = datePicker
             }
         }
     }
@@ -90,5 +103,9 @@ extension LoginView: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         sexTextField.text = sex[row]
+    }
+    
+    func datePickerValueChanged(sender: UIDatePicker) {
+        birthDateTextField.text = datePickerDateFormatter.string(from: sender.date)
     }
 }
