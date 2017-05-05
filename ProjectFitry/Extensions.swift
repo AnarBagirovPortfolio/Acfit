@@ -23,6 +23,10 @@ extension UIColor {
     class var mainColor: UIColor {
         return UIColor(red: 14 / 255.0, green: 61 / 255.0, blue: 76 / 255.0, alpha: 0.8)
     }
+    
+    class var pickerColor: UIColor {
+        return UIColor(red: 90 / 255.0, green: 101 / 255.0, blue: 108 / 255.0, alpha: 1)
+    }
 }
 
 extension UITextField {

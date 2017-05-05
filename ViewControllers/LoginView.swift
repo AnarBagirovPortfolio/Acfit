@@ -10,21 +10,22 @@ import UIKit
 
 class LoginView: UIView {
     
-    @IBOutlet weak var fullNameTextField: UITextField!
-    @IBOutlet weak var birthDateTextField: UIDateTextField!
-    @IBOutlet weak var sexTextField: UISexTextField!
-    @IBOutlet weak var weightTextField: UITextField!
-    @IBOutlet weak var heightTextField: UITextField!
-    @IBOutlet weak var birthDateLabelWidth: NSLayoutConstraint!
-    @IBOutlet weak var birthDateFieldWidth: NSLayoutConstraint!
-    @IBOutlet weak var weightLabelWidth: NSLayoutConstraint!
-    @IBOutlet weak var weightFieldWidth: NSLayoutConstraint!
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var firstNameField: UITextField!
+    @IBOutlet weak var secondNameField: UITextField!
+    @IBOutlet weak var birthDateField: UIDateTextField!
+    @IBOutlet weak var sexField: UISexTextField!
+    @IBOutlet weak var heightField: UITextField!
+    @IBOutlet weak var weightField: UITextField!
+    
+    @IBOutlet weak var birthDateFieldConstraint: NSLayoutConstraint!
+    @IBOutlet weak var birthDateLabelConstraint: NSLayoutConstraint!
+    @IBOutlet weak var heightLabelConstraint: NSLayoutConstraint!
+    @IBOutlet weak var heightFieldConstraint: NSLayoutConstraint!
     
     @IBAction func editingDidBegin(_ sender: UITextField) {
-        if let view = sender as? UISexTextField {
-            if view.text?.isEmpty ?? true {
-                view.text = view.sex[0]
+        if sender == sexField {
+            if sender.text?.isEmpty ?? true {
+                sender.text = sexField.sex.first
             }
         }
     }
@@ -34,18 +35,16 @@ class LoginView: UIView {
             return
         }
         
+        [ firstNameField, secondNameField, birthDateField, sexField, heightField, weightField ].forEach({
+            $0?.useUnderline()
+        })
+        
         let margin = CGFloat(16)
         let width = (view.bounds.width - 3 * margin) / 2
         
-        [ birthDateFieldWidth, birthDateLabelWidth, weightLabelWidth, weightFieldWidth ].forEach { constraint in
-            constraint?.constant = width
-        }
-        
-        [ fullNameTextField, birthDateTextField, sexTextField, weightTextField, heightTextField ].forEach { field in
-            field?.useUnderline()
-        }
-        
-        loginButton.set(enable: false)
+        [ birthDateFieldConstraint, birthDateLabelConstraint, heightLabelConstraint, heightFieldConstraint ].forEach({
+            $0?.constant = width
+        })
         
         frame = view.bounds
     }

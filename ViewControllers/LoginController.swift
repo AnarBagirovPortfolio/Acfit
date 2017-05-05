@@ -79,7 +79,7 @@ extension LoginController {
     
     func keyboardWillShow(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            let constraint = standardTopConstraint - keyboardSize.height / 2
+            let constraint = standardTopConstraint - keyboardSize.height / 2 + 5
             
             edit(topConstraintConstant: constraint, type: .standard)
         } else {
