@@ -91,14 +91,13 @@ class LoginView: UIView {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let main = storyboard.instantiateViewController(withIdentifier: "mainScreen")
             self.superViewController?.present(main, animated: true, completion: {
-                if let controller = self.superViewController as? LoginController {
-                    self.removeFromSuperview()
-                    controller.imagePicker = nil
-                    NotificationCenter.default.removeObserver(controller)
+                if let loginController = self.superViewController as? LoginController {
+                    loginController.imagePicker = nil
+                    NotificationCenter.default.removeObserver(loginController)
                 }
                 
-                AcfitLibrary.shared.set(statusBarTintColor: .black)
-                AcfitLibrary.shared.set(statusBarBackgroundColor: .clear)
+                self.superViewController = nil
+                self.removeFromSuperview()
             })
         }
     }
