@@ -31,6 +31,14 @@ class UIDateTextField: UITextField {
         return dateFormatter
     }()
     
+    func date() -> Date? {
+        if self.empty() {
+            return nil
+        } else {
+            return datePickerDateFormatter.date(from: self.text!)
+        }
+    }
+    
     override var inputView: UIView? {
         get {
             return _inputView

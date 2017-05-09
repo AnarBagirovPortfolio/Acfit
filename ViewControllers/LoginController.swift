@@ -8,11 +8,24 @@
 
 import UIKit
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var loginView: UIView!
+    
+    var logoImage: UIImageView!
+    var firstStart = true
+    
+    lazy var imagePicker: UIImagePickerController = {
+        let picker = UIImagePickerController()
+        
+        picker.delegate = self
+        picker.allowsEditing = false
+        picker.sourceType = .photoLibrary
+        
+        return picker
+    }()
     
     lazy var standardTopConstraint: CGFloat = {
         return (self.view.bounds.height - self.heightConstraint.constant) / 2
@@ -26,7 +39,10 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         
         if let loginView = Bundle.main.loadNibNamed("LoginView", owner: self, options: nil)?.first as? LoginView {
+            loginView.setImageButton.addTarget(self, action: #selector(setImageButtonPressed), for: .touchDown)
+            
             self.loginView.addSubview(loginView)
+            self.logoImage = loginView.logo
         }
         
         DispatchQueue.main.async {
@@ -51,16 +67,21 @@ class LoginController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        topConstraint.constant = view.bounds.height
+        if firstStart {
+            topConstraint.constant = view.bounds.height
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        edit(topConstraintConstant: self.standardTopConstraint, type: .bottomUp)
+        if firstStart {
+            edit(topConstraintConstant: self.standardTopConstraint, type: .bottomUp)
+            firstStart = false
+        }
     }
     
 }
 
-extension LoginController {
+extension LoginController: UIImagePickerControllerDelegate {
     func edit(topConstraintConstant: CGFloat, type: AcfitLibrary.AnimationType) {
         topConstraint.constant = topConstraintConstant
         
@@ -85,5 +106,27 @@ extension LoginController {
         } else {
             edit(topConstraintConstant: openKeyboardTopConstraint, type: .standard)
         }
+    }
+    
+    func setImageButtonPressed() {
+        present(imagePicker, animated: true, completion: {
+            AcfitLibrary.shared.set(statusBarTintColor: .black)
+            AcfitLibrary.shared.set(statusBarBackgroundColor: .clear)
+        })
+    }
+    
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            logoImage.image = pickedImage
+        }
+        
+        imagePickerControllerDidCancel(picker)
+    }
+    
+    internal func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: {
+            AcfitLibrary.shared.set(statusBarTintColor: .white)
+            AcfitLibrary.shared.set(statusBarBackgroundColor: .mainColor)
+        })
     }
 }

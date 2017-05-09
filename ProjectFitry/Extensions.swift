@@ -30,6 +30,12 @@ extension UIColor {
 }
 
 extension UITextField {
+    func empty() -> Bool {
+        return self.text?.isEmpty ?? true
+    }
+}
+
+extension UITextField {
     func useUnderline() {
         let border = CALayer()
         let borderWidth = CGFloat(1.0)
@@ -47,3 +53,16 @@ extension UIButton {
         self.alpha = enable ? 1 : 0.5
     }
 }
+
+extension String {
+    func toDouble() -> Double? {
+        return Double(self.replacingOccurrences(of: ",", with: "."))
+    }
+}
+
+extension Optional where Wrapped == String {
+    func toDouble() -> Double? {
+        return self == nil ? nil : self!.toDouble()
+    }
+}
+

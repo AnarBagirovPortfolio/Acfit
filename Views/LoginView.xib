@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hF0-EP-DMu">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hF0-EP-DMu">
                     <rect key="frame" x="16" y="16" width="84" height="84"/>
                     <color key="backgroundColor" red="0.086274509799999996" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -28,6 +28,16 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Leg-wM-xep">
+                    <rect key="frame" x="16" y="16" width="84" height="84"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="84" id="UyF-Xx-OEc"/>
+                        <constraint firstAttribute="height" constant="84" id="agd-V1-hPk"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1VM-Xj-E13">
                     <rect key="frame" x="108" y="16" width="251" height="38"/>
                     <constraints>
@@ -36,6 +46,9 @@
                     <color key="textColor" red="0.086274509799999996" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
+                    <connections>
+                        <action selector="editingChanged:" destination="iN0-l3-epB" eventType="editingChanged" id="pYL-Nc-9k1"/>
+                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Second name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fMa-Wr-x2B">
                     <rect key="frame" x="108" y="62" width="251" height="38"/>
@@ -45,6 +58,9 @@
                     <color key="textColor" red="0.086274509799999996" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
+                    <connections>
+                        <action selector="editingChanged:" destination="iN0-l3-epB" eventType="editingChanged" id="tli-0a-cHN"/>
+                    </connections>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birth date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idH-ef-Qup">
                     <rect key="frame" x="16" y="116" width="146" height="18"/>
@@ -70,6 +86,9 @@
                     <color key="textColor" red="0.086274509799999996" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="editingChanged:" destination="iN0-l3-epB" eventType="editingChanged" id="WsF-S2-85G"/>
+                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sex" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Qx-I0-cX7" customClass="UISexTextField" customModule="ProjectFitry" customModuleProvider="target">
                     <rect key="frame" x="178" y="134" width="181" height="38"/>
@@ -80,6 +99,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                     <connections>
+                        <action selector="editingChanged:" destination="iN0-l3-epB" eventType="editingChanged" id="Omv-gS-vKY"/>
                         <action selector="editingDidBegin:" destination="iN0-l3-epB" eventType="editingDidBegin" id="8Hs-hz-px6"/>
                     </connections>
                 </textField>
@@ -98,7 +118,7 @@
                     <color key="textColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Weight" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VjT-rj-Jw3">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="In kilograms" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VjT-rj-Jw3">
                     <rect key="frame" x="16" y="206" width="146" height="38"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="146" id="D8E-VX-F6A"/>
@@ -107,8 +127,11 @@
                     <color key="textColor" red="0.086274509799999996" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" keyboardAppearance="alert"/>
+                    <connections>
+                        <action selector="editingChanged:" destination="iN0-l3-epB" eventType="editingChanged" id="6OZ-oe-u5f"/>
+                    </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Height" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3RW-tA-RlI">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="In meters" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3RW-tA-RlI">
                     <rect key="frame" x="178" y="206" width="181" height="38"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="38" id="FJz-ya-BBp"/>
@@ -116,6 +139,9 @@
                     <color key="textColor" red="0.086274509799999996" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" keyboardAppearance="alert"/>
+                    <connections>
+                        <action selector="editingChanged:" destination="iN0-l3-epB" eventType="editingChanged" id="J2l-5A-Umf"/>
+                    </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFg-6v-v21">
                     <rect key="frame" x="16" y="260" width="343" height="38"/>
@@ -131,12 +157,17 @@
                             <integer key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="loginButtonPressed:" destination="iN0-l3-epB" eventType="primaryActionTriggered" id="Sc6-bS-8FA"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>
+                <constraint firstItem="Leg-wM-xep" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="1y1-NU-E2u"/>
                 <constraint firstItem="fMa-Wr-x2B" firstAttribute="leading" secondItem="hF0-EP-DMu" secondAttribute="trailing" constant="8" id="1yy-mX-UlC"/>
                 <constraint firstItem="2Qx-I0-cX7" firstAttribute="top" secondItem="DaS-LX-6RD" secondAttribute="bottom" id="339-rZ-sYf"/>
                 <constraint firstItem="idH-ef-Qup" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="3mT-Vk-dGW"/>
+                <constraint firstItem="Leg-wM-xep" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="5TV-IT-ZA5"/>
                 <constraint firstItem="mFg-6v-v21" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="8W8-vQ-fw2"/>
                 <constraint firstItem="2Qx-I0-cX7" firstAttribute="leading" secondItem="ylc-v8-AN1" secondAttribute="trailing" constant="16" id="97c-uE-QUR"/>
                 <constraint firstItem="hF0-EP-DMu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="9d3-go-7eh"/>
@@ -177,7 +208,10 @@
                 <outlet property="heightField" destination="3RW-tA-RlI" id="FJA-SH-stX"/>
                 <outlet property="heightFieldConstraint" destination="D8E-VX-F6A" id="zCE-H1-TU2"/>
                 <outlet property="heightLabelConstraint" destination="a9S-Cl-gbc" id="ejp-DU-bfY"/>
+                <outlet property="loginButton" destination="mFg-6v-v21" id="TJs-11-CgT"/>
+                <outlet property="logo" destination="hF0-EP-DMu" id="NRE-V0-GSw"/>
                 <outlet property="secondNameField" destination="fMa-Wr-x2B" id="tCv-lx-f2O"/>
+                <outlet property="setImageButton" destination="Leg-wM-xep" id="0ox-RK-tYy"/>
                 <outlet property="sexField" destination="2Qx-I0-cX7" id="TRT-Nx-UGs"/>
                 <outlet property="weightField" destination="VjT-rj-Jw3" id="xv4-Lf-QU1"/>
             </connections>
