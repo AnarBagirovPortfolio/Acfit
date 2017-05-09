@@ -37,24 +37,16 @@ class ActivityIndicatorController {
         self.view = view
     }
     
-    func showActivityIndicator() {
+    func show() {
         view.addSubview(container)
         activityIndicator.startAnimating()
     }
     
-    func hideActivityIndicator() {
+    func hide() {
         activityIndicator.stopAnimating()
         container.removeFromSuperview()
     }
     
 }
 
-extension UIColor {
-    convenience init(hex: UInt32, alpha: CGFloat = 1) {
-        let red = CGFloat((hex & 0xFF0000) >> 16) / 256.0
-        let green = CGFloat((hex & 0xFF00) >> 8) / 256.0
-        let blue = CGFloat(hex & 0xFF) / 256.0
-        
-        self.init(red: red, green: green, blue: blue, alpha: alpha)
-    }
-}
+

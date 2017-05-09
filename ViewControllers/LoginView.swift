@@ -49,7 +49,7 @@ class LoginView: UIView {
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
-        activityIndicatorController.showActivityIndicator()
+        activityIndicatorController.show()
         loginButton.set(enable: false)
         
         DispatchQueue.main.async {
@@ -86,7 +86,7 @@ class LoginView: UIView {
             }()
             
             CoreDataStack.shared.saveContext()
-            self.activityIndicatorController.hideActivityIndicator()
+            self.activityIndicatorController.hide()
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let main = storyboard.instantiateViewController(withIdentifier: "mainScreen")
