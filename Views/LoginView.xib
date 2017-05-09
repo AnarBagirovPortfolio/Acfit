@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hF0-EP-DMu">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hF0-EP-DMu">
                     <rect key="frame" x="16" y="16" width="84" height="84"/>
                     <color key="backgroundColor" red="0.086274509799999996" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -86,9 +86,6 @@
                     <color key="textColor" red="0.086274509799999996" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <action selector="editingChanged:" destination="iN0-l3-epB" eventType="editingChanged" id="WsF-S2-85G"/>
-                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sex" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Qx-I0-cX7" customClass="UISexTextField" customModule="ProjectFitry" customModuleProvider="target">
                     <rect key="frame" x="178" y="134" width="181" height="38"/>
@@ -99,7 +96,6 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                     <connections>
-                        <action selector="editingChanged:" destination="iN0-l3-epB" eventType="editingChanged" id="Omv-gS-vKY"/>
                         <action selector="editingDidBegin:" destination="iN0-l3-epB" eventType="editingDidBegin" id="8Hs-hz-px6"/>
                     </connections>
                 </textField>

@@ -51,6 +51,6 @@ class UIDateTextField: UITextField {
 
 extension UIDateTextField {
     func datePickerValueChanged(sender: UIDatePicker) {
-        text = self.datePickerDateFormatter.string(from: sender.date)
+        self.setValue(self.datePickerDateFormatter.string(from: sender.date), forKey: "text")
     }
 }

@@ -10,6 +10,7 @@
 		D10F42371EB8F498002A7C1A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10F42361EB8F498002A7C1A /* Extensions.swift */; };
 		D12F72ED1EB7A41700FAD2CD /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D12F72EC1EB7A41700FAD2CD /* LoginView.xib */; };
 		D12F72EF1EB7A6BB00FAD2CD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12F72EE1EB7A6BB00FAD2CD /* LoginView.swift */; };
+		D18FD7061EC227D500BB439B /* ActivityIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18FD7051EC227D500BB439B /* ActivityIndicatorController.swift */; };
 		D1C55F8D1EB111A2004E877E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C55F8C1EB111A2004E877E /* AppDelegate.swift */; };
 		D1C55F921EB111A2004E877E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1C55F901EB111A2004E877E /* Main.storyboard */; };
 		D1C55F951EB111A2004E877E /* ProjectFitry.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D1C55F931EB111A2004E877E /* ProjectFitry.xcdatamodeld */; };
@@ -37,6 +38,7 @@
 		D10F42361EB8F498002A7C1A /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D12F72EC1EB7A41700FAD2CD /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginView.xib; path = Views/LoginView.xib; sourceTree = "<group>"; };
 		D12F72EE1EB7A6BB00FAD2CD /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = ViewControllers/LoginView.swift; sourceTree = "<group>"; };
+		D18FD7051EC227D500BB439B /* ActivityIndicatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicatorController.swift; path = ViewControllers/ActivityIndicatorController.swift; sourceTree = "<group>"; };
 		D1C55F891EB111A2004E877E /* ProjectFitry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectFitry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1C55F8C1EB111A2004E877E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1C55F911EB111A2004E877E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			children = (
 				D1EE940D1EB646E600FD6F05 /* LoginController.swift */,
 				D12F72EE1EB7A6BB00FAD2CD /* LoginView.swift */,
+				D18FD7051EC227D500BB439B /* ActivityIndicatorController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				D1EE94101EB6478800FD6F05 /* AcfitLibrary.swift in Sources */,
 				D1C55FB21EB11D2D004E877E /* CoreDataStack.swift in Sources */,
 				D1CD30381EBB8A5000066E75 /* UISexTextField.swift in Sources */,
+				D18FD7061EC227D500BB439B /* ActivityIndicatorController.swift in Sources */,
 				D10F42371EB8F498002A7C1A /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

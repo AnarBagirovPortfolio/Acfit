@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        openLoginScreenIfNeeded()
+        
         return true
     }
 
@@ -37,6 +39,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         CoreDataStack.shared.saveContext()
+    }
+    
+    func openLoginScreenIfNeeded() {
+        let customersCount = CoreDataStack.shared.count(of: Customer.self)
+        
+        if customersCount == 0 {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginController = storyboard.instantiateViewController(withIdentifier: "loginController")
+            
+            window?.rootViewController = loginController
+            window?.makeKeyAndVisible()
+        }
     }
 
 }

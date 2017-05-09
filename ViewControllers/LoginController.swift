@@ -17,7 +17,7 @@ class LoginController: UIViewController, UINavigationControllerDelegate {
     var logoImage: UIImageView!
     var firstStart = true
     
-    lazy var imagePicker: UIImagePickerController = {
+    lazy var imagePicker: UIImagePickerController! = {
         let picker = UIImagePickerController()
         
         picker.delegate = self
@@ -40,6 +40,7 @@ class LoginController: UIViewController, UINavigationControllerDelegate {
         
         if let loginView = Bundle.main.loadNibNamed("LoginView", owner: self, options: nil)?.first as? LoginView {
             loginView.setImageButton.addTarget(self, action: #selector(setImageButtonPressed), for: .touchDown)
+            loginView.superViewController = self
             
             self.loginView.addSubview(loginView)
             self.logoImage = loginView.logo
@@ -58,10 +59,6 @@ class LoginController: UIViewController, UINavigationControllerDelegate {
         AcfitLibrary.shared.set(statusBarBackgroundColor: .mainColor)
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

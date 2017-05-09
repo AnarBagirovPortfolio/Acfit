@@ -34,6 +34,12 @@ class LoginView: UIView {
     @IBOutlet weak var setImageButton: UIButton!
     @IBOutlet weak var logo: UIImageView!
     
+    lazy var activityIndicatorController: ActivityIndicatorController = {
+       return ActivityIndicatorController(self)
+    }()
+    
+    var superViewController: UIViewController?
+    
     @IBAction func editingDidBegin(_ sender: UITextField) {
         if sender == sexField {
             if sender.empty() {
@@ -43,41 +49,58 @@ class LoginView: UIView {
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
+        activityIndicatorController.showActivityIndicator()
         loginButton.set(enable: false)
         
-        guard let firstName = firstNameField.text,
-            let secondName = secondNameField.text,
-            let sex = sexField.text,
-            let birthDate = birthDateField.date(),
-            let weight = weightField.text.toDouble(),
-            let height = heightField.text.toDouble() else {
-                return
-        }
-        
-        let id = UUID().uuidString
-        let name = firstName + " " + secondName
-        
-        let customer = CoreDataStack.shared.create(Customer.self)
-        
-        customer.id = id
-        customer.name = name
-        customer.sex = sex
-        customer.birthDate = birthDate as NSDate
-        customer.weightInKg = weight
-        customer.heightInMetr = height
-        customer.image = {
-            if logo.image == nil {
-                return nil
-            } else {
-                guard let imageData = UIImagePNGRepresentation(logo.image!) else {
+        DispatchQueue.main.async {
+            guard let firstName = self.firstNameField.text,
+                let secondName = self.secondNameField.text,
+                let sex = self.sexField.text,
+                let birthDate = self.birthDateField.date(),
+                let weight = self.weightField.text.toDouble(),
+                let height = self.heightField.text.toDouble() else {
+                    return
+            }
+            
+            let id = UUID().uuidString
+            let name = firstName + " " + secondName
+            
+            let customer = CoreDataStack.shared.create(Customer.self)
+            
+            customer.id = id
+            customer.name = name
+            customer.sex = sex
+            customer.birthDate = birthDate as NSDate
+            customer.weightInKg = weight
+            customer.heightInMetr = height
+            customer.image = {
+                if self.logo.image == nil {
                     return nil
+                } else {
+                    guard let imageData = UIImagePNGRepresentation(self.logo.image!) else {
+                        return nil
+                    }
+                    
+                    return NSData(data: imageData)
+                }
+            }()
+            
+            CoreDataStack.shared.saveContext()
+            self.activityIndicatorController.hideActivityIndicator()
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let main = storyboard.instantiateViewController(withIdentifier: "mainScreen")
+            self.superViewController?.present(main, animated: true, completion: {
+                if let controller = self.superViewController as? LoginController {
+                    self.removeFromSuperview()
+                    controller.imagePicker = nil
+                    NotificationCenter.default.removeObserver(controller)
                 }
                 
-                return NSData(data: imageData)
-            }
-        }()
-        
-        CoreDataStack.shared.saveContext()
+                AcfitLibrary.shared.set(statusBarTintColor: .black)
+                AcfitLibrary.shared.set(statusBarBackgroundColor: .clear)
+            })
+        }
     }
     
     @IBAction func editingChanged(_ sender: UITextField) {

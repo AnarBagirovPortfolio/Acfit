@@ -14,7 +14,7 @@ final class CoreDataStack {
     
     static let shared = CoreDataStack()
     
-    fileprivate lazy var persistentContainer: NSPersistentContainer = {
+    var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "ProjectFitry")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -40,6 +40,13 @@ extension CoreDataStack {
     
     func create<T: NSManagedObject>(_ type: T.Type) -> T {
         return T(context: persistentContainer.viewContext)
+    }
+    
+    func count<T: NSManagedObject>(of: T.Type) -> Int {
+        let request = T.fetchRequest() as! NSFetchRequest<T>
+        let count = try? persistentContainer.viewContext.count(for: request)
+        
+        return count ?? 0
     }
     
     func fetchedObjects<T>(controller: NSFetchedResultsController<T>) -> [T] {
