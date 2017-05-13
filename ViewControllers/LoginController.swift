@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class LoginController: UIViewController, UINavigationControllerDelegate {
     
@@ -27,11 +28,11 @@ class LoginController: UIViewController, UINavigationControllerDelegate {
         return picker
     }()
     
-    lazy var standardTopConstraint: CGFloat = {
+    lazy var standardTopConstraint: CGFloat! = {
         return (self.view.bounds.height - self.heightConstraint.constant) / 2
     }()
     
-    lazy var openKeyboardTopConstraint: CGFloat = {
+    lazy var openKeyboardTopConstraint: CGFloat! = {
         return 30
     }()
     
@@ -47,9 +48,6 @@ class LoginController: UIViewController, UINavigationControllerDelegate {
         }
         
         DispatchQueue.main.async {
-            NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
-            
             self.view.addGestureRecognizer({
                 return UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
             }())
@@ -74,6 +72,21 @@ class LoginController: UIViewController, UINavigationControllerDelegate {
             edit(topConstraintConstant: self.standardTopConstraint, type: .bottomUp)
             firstStart = false
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    deinit {
+        imagePicker = nil
+        standardTopConstraint = nil
+        openKeyboardTopConstraint = nil
+        logoImage = nil
     }
     
 }
@@ -106,15 +119,25 @@ extension LoginController: UIImagePickerControllerDelegate {
     }
     
     func setImageButtonPressed() {
-        present(imagePicker, animated: true, completion: {
-            AcfitLibrary.shared.set(statusBarTintColor: .black)
-            AcfitLibrary.shared.set(statusBarBackgroundColor: .clear)
-        })
+        autoreleasepool {
+            present(imagePicker, animated: true, completion: {
+                AcfitLibrary.shared.set(statusBarTintColor: .black)
+                AcfitLibrary.shared.set(statusBarBackgroundColor: .clear)
+            })
+            
+            imagePicker = nil
+        }
     }
     
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            logoImage.image = pickedImage
+        let url = info[UIImagePickerControllerReferenceURL] as! URL
+        let assets = PHAsset.fetchAssets(withALAssetURLs: [url], options: nil)
+        let asset = assets.firstObject!
+        let size = CGSize(width: 500, height: 500)
+        let request = PHImageManager.default().requestImage
+        
+        let _ = request(asset, size, .aspectFit, nil) { (result, info) in
+            self.logoImage.image = result
         }
         
         imagePickerControllerDidCancel(picker)

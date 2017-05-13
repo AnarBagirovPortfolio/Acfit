@@ -34,11 +34,16 @@ class LoginView: UIView {
     @IBOutlet weak var setImageButton: UIButton!
     @IBOutlet weak var logo: UIImageView!
     
-    lazy var activityIndicatorController: ActivityIndicatorController = {
+    lazy var activityIndicatorController: ActivityIndicatorController! = {
        return ActivityIndicatorController(self)
     }()
     
     var superViewController: UIViewController?
+    
+    func closeAllReferences() {
+        activityIndicatorController = nil
+        superViewController = nil
+    }
     
     @IBAction func editingDidBegin(_ sender: UITextField) {
         if sender == sexField {
@@ -90,15 +95,10 @@ class LoginView: UIView {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let main = storyboard.instantiateViewController(withIdentifier: "mainScreen")
-            self.superViewController?.present(main, animated: true, completion: {
-                if let loginController = self.superViewController as? LoginController {
-                    loginController.imagePicker = nil
-                    NotificationCenter.default.removeObserver(loginController)
-                }
-                
-                self.superViewController = nil
-                self.removeFromSuperview()
-            })
+            UIApplication.shared.keyWindow?.rootViewController = main
+            
+            self.removeFromSuperview()
+            self.closeAllReferences()
         }
     }
     
